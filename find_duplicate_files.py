@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 import argparse
 import os
 from hashlib import md5
@@ -133,7 +133,7 @@ def find_dup_files_by_size_and_checksum(group_by_size, result):
     groups_by_checksum = group_files_by_checksum(group_by_size)
     for duplicated_file in groups_by_checksum:
         result.append(duplicated_file)
-        return result
+    return result
 
 
 def find_dup_files_by_size_and_content_and_checksum(group_by_size, result):
@@ -150,9 +150,8 @@ def find_duplicate_files(file_path_names, chunks=True):
     ''' Return a list of groups of duplicate files '''
     result = []
     groups_by_size = group_files_by_size(file_path_names)
-
     for group_by_size in groups_by_size:
-        if chunks is True:
+        if chunks:
             result = find_dup_files_by_size_and_content_and_checksum(
                         group_by_size, result)
         else:
@@ -176,7 +175,10 @@ def main():
         result = find_duplicate_files(file_path_names, "chunk")
     else:
         result = find_duplicate_files(file_path_names)
-    print(convert_to_json(result))
+    if result:
+        print(convert_to_json(result))
+    else:
+        print("There are no duplicated files!")
 
 
 if __name__ == '__main__':

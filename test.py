@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 from find_duplicate_files import *
 import unittest
 from os import chdir
@@ -33,8 +34,8 @@ class TestDuplicateFilesFinder(unittest.TestCase):
     def test_group_files_by_size(self):
         out = group_files_by_size(scan_files("test"))
         self.assertIn(['/home/vnam/vnam/test/file1',
-                      '/home/vnam/vnam/test/file2',
-                      '/home/vnam/vnam/test/file4'], out)
+                       '/home/vnam/vnam/test/file2',
+                       '/home/vnam/vnam/test/file4'], out)
         self.assertIn(['/home/vnam/vnam/test/hiddenfile2',
                        '/home/vnam/vnam/test/hiddenfile1'], out)
 
@@ -53,9 +54,9 @@ class TestDuplicateFilesFinder(unittest.TestCase):
         self.assertIn(['/home/vnam/vnam/test/emptyfile',
                        '/home/vnam/vnam/test/file'], out)
         self.assertIn(['/home/vnam/vnam/test/file1',
-                       '/home/vnam/vnam/test/file2'],out)
+                       '/home/vnam/vnam/test/file2'], out)
         self.assertIn(['/home/vnam/vnam/test/hiddenfile2',
-                       '/home/vnam/vnam/test/hiddenfile1'],out)
+                       '/home/vnam/vnam/test/hiddenfile1'], out)
 
     def test_find_duplicate_files(self):
         out = find_duplicate_files(scan_files("test"))
@@ -63,6 +64,7 @@ class TestDuplicateFilesFinder(unittest.TestCase):
                       '/home/vnam/vnam/test/file2'], out)
         self.assertIn(['/home/vnam/vnam/test/hiddenfile2',
                        '/home/vnam/vnam/test/hiddenfile1'], out)
+
 
 if __name__ == '__main__':
     unittest.main()
